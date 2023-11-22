@@ -36,8 +36,14 @@ class ApoliceController {
 
       const apoliceResultado = await apolice.save();
 
-      res.status(201).send(apoliceResultado.toJSON());
+      console.log("Apólice salva com sucesso:", apoliceResultado);
+
+      const jsonResult = apoliceResultado.toJSON();
+      console.log("Resultado convertido para JSON:", jsonResult);
+
+      res.status(201).send(jsonResult);
     } catch (erro) {
+      console.error("Erro ao cadastrar apólice:", erro);
       next(erro);
     }
   };
