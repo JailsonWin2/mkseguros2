@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { apoliceSchema } from "./Apolice.js";
+import { apoliceSchema } from "./index.js";
 
 const comissaoSchema = new mongoose.Schema({
   data_recebimento: {
