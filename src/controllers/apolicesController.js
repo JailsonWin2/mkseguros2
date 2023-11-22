@@ -32,18 +32,13 @@ class ApoliceController {
 
   static cadastrarApolice = async (req, res, next) => {
     try {
+      console.log("cria o objeto apolice");
       let apolice = new apolices(req.body);
-
+      console.log("salva o objeto apolice");
       const apoliceResultado = await apolice.save();
-
-      console.log("Apólice salva com sucesso:", apoliceResultado);
-
-      const jsonResult = apoliceResultado.toJSON();
-      console.log("Resultado convertido para JSON:", jsonResult);
-
-      res.status(201).send(jsonResult);
+      console.log("envia o objeto apolice");
+      res.status(201).send(apoliceResultado);
     } catch (erro) {
-      console.error("Erro ao cadastrar apólice:", erro);
       next(erro);
     }
   };
