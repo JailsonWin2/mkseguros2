@@ -67,4 +67,4 @@ const apoliceSchema = new mongoose.Schema(
 
 const apolices = mongoose.model("apolices", apoliceSchema);
 
-export { apolices, apoliceSchema };
+export default { apolices, apoliceSchema };
