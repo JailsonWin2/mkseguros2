@@ -1,7 +1,7 @@
 import express from "express";
 import livros from "./livrosRoutes.js";
 import autores from "./autoresRoutes.js";
-import { apolices } from "../models/index.js";
+import apolices from "./apolicesRoutes.js";
 
 const routes = (app) => {
   app.route("/").get((req, res) => {
