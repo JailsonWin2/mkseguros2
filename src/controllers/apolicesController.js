@@ -35,7 +35,7 @@ class ApoliceController {
       console.log("cria o objeto apolice");
       let apolice = new apolices(req.body);
       console.log("salva o objeto apolice");
-      const apoliceResultado = await apolice.save();
+      //const apoliceResultado = await apolice.save();
       console.log("envia o objeto apolice");
       res.status(201).send(apoliceResultado);
     } catch (erro) {
