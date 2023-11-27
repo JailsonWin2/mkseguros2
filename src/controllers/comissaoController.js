@@ -18,10 +18,9 @@ class ComissaoController {
     try {
       const id = req.params.id;
 
-      const comissaoResultado = await comissoes
-        .findById(id)
-        .populate("autor", "nome")
-        .exec();
+      const comissaoResultado = await comissoes.findById(id);
+      //.populate("autor", "nome")
+      //.exec();
 
       if (comissaoResultado !== null) {
         res.status(200).send(comissaoResultado);
