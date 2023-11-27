@@ -35,7 +35,12 @@ class ComissaoController {
 
   static cadastrarComissao = async (req, res, next) => {
     try {
+      const apoliceResultado = await apolices.findById(req.body.apolice);
+      console.log("ApoliceResultado", apoliceResultado);
       let comissao = new comissoes(req.body);
+      console.log("Comissao", comissao);
+      comissao.apolice = apoliceResultado;
+      console.log("Comissao2", comissao);
 
       const comissaoResultado = await comissao.save();
 
