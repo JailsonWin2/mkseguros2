@@ -1,2 +1,3 @@
-# 2404-api-node-express
-Projeto utilizado no curso da Alura
+# MK-Seguros
+
+Projeto desenvolvido por Jailson Eduardo Ferens
