@@ -92,6 +92,7 @@ class ComissaoController {
         console.log("ComissoesResultado", comissoesResultado);
 
         req.resultado = comissoesResultado;
+        console.log("Resultado", req.resultado);
 
         next();
       } else {
