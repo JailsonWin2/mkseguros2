@@ -85,13 +85,16 @@ class ComissaoController {
 
   static listarComissaoPorApolice = async (req, res, next) => {
     try {
-      const id = req.query.apolice;
-      const comissaoResultado = await apolices.findById(id);
+      const apoliceId = req.query.apolice;
+      const apoliceEncontrada = await apolices.findById(apoliceId);
 
-      if (comissaoResultado !== null) {
-        res.status(200).send(comissaoResultado);
+      if (apoliceEncontrada !== null) {
+        const comissoesPorApolice = await comissoes.find({
+          apolice: apoliceEncontrada,
+        });
+        res.status(200).json(comissoesPorApolice);
       } else {
-        next(new NaoEncontrado("Id da comissao não localizado."));
+        next(new NaoEncontrado("Id da apolice não localizado."));
       }
     } catch (erro) {
       console.log("Erro", erro);
