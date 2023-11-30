@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
   .get("/comissoes", ComissaoController.listarComissoes, paginar)
+  .get("/comissoes/apolice", ComissaoController.listarComissaoPorApolice)
   .get("/comissoes/busca", ComissaoController.listarComissaoPorFiltro, paginar)
   .get("/comissoes/:id", ComissaoController.listarComissaoPorId)
   .post("/comissoes", ComissaoController.cadastrarComissao)

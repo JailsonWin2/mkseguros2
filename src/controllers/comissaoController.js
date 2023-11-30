@@ -83,6 +83,22 @@ class ComissaoController {
     }
   };
 
+  static listarComissaoPorApolice = async (req, res, next) => {
+    try {
+      const id = req.params.apolice;
+
+      const comissaoResultado = await comissoes.find({ apolice: id });
+
+      if (comissaoResultado !== null) {
+        res.status(200).send(comissaoResultado);
+      } else {
+        next(new NaoEncontrado("Id da comissao não localizado."));
+      }
+    } catch (erro) {
+      next(erro);
+    }
+  };
+
   static listarComissaoPorFiltro = async (req, res, next) => {
     try {
       const busca = await processaBusca(req.query);
