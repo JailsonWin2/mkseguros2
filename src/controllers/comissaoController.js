@@ -85,10 +85,10 @@ class ComissaoController {
 
   static listarComissaoPorApolice = async (req, res, next) => {
     try {
-      const id = req.params.apolice;
+      const id = req.query.apolice;
       console.log("Id", id);
 
-      const comissaoResultado = await comissoes.find({ apolice: id });
+      const comissaoResultado = await comissoes.findById({ apolice: id });
       console.log("ComissaoResultado", comissaoResultado);
 
       if (comissaoResultado !== null) {
