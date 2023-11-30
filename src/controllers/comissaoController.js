@@ -126,7 +126,7 @@ async function processaBusca(parametros) {
   //    busca = null;
   //  }
   //}
-
+  console.log("Busca", busca);
   return busca;
 }
 
