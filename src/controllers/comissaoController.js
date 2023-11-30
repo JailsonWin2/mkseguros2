@@ -97,6 +97,7 @@ class ComissaoController {
         next(new NaoEncontrado("Id da comissao não localizado."));
       }
     } catch (erro) {
+      console.log("Erro", erro);
       next(erro);
     }
   };
