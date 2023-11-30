@@ -86,10 +86,7 @@ class ComissaoController {
   static listarComissaoPorApolice = async (req, res, next) => {
     try {
       const id = req.query.apolice;
-      console.log("Id", id);
-
       const comissaoResultado = await apolices.findById(id);
-      console.log("ComissaoResultado", comissaoResultado);
 
       if (comissaoResultado !== null) {
         res.status(200).send(comissaoResultado);
@@ -108,10 +105,8 @@ class ComissaoController {
 
       if (busca !== null) {
         const comissoesResultado = apolices.find(busca.apolice);
-        console.log("ComissoesResultado", comissoesResultado);
 
         req.resultado = comissoesResultado;
-        console.log("Resultado", req.resultado);
 
         next();
       } else {
@@ -148,7 +143,6 @@ async function processaBusca(parametros) {
   //    busca = null;
   //  }
   //}
-  console.log("Busca", busca);
   return busca;
 }
 
