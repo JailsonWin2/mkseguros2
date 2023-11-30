@@ -89,6 +89,7 @@ class ComissaoController {
 
       if (busca !== null) {
         const comissoesResultado = comissoes.find(busca.apolice);
+        console.log("ComissoesResultado", comissoesResultado);
 
         req.resultado = comissoesResultado;
 
@@ -97,6 +98,7 @@ class ComissaoController {
         res.status(200).send([]);
       }
     } catch (erro) {
+      console.log("Erro", erro);
       next(erro);
     }
   };
