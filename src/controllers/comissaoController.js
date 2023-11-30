@@ -107,7 +107,7 @@ class ComissaoController {
       const busca = await processaBusca(req.query);
 
       if (busca !== null) {
-        const comissoesResultado = comissoes.find(busca.apolice);
+        const comissoesResultado = apolices.find(busca.apolice);
         console.log("ComissoesResultado", comissoesResultado);
 
         req.resultado = comissoesResultado;
