@@ -88,7 +88,7 @@ class ComissaoController {
       const id = req.query.apolice;
       console.log("Id", id);
 
-      const comissaoResultado = await comissoes.findById({ apolice: id });
+      const comissaoResultado = await apolices.findById({ apolice: id });
       console.log("ComissaoResultado", comissaoResultado);
 
       if (comissaoResultado !== null) {
