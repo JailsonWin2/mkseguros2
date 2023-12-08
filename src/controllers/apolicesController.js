@@ -77,25 +77,26 @@ class ApoliceController {
   };
 
   static listarApolicePorEmissao = async (req, res, next) => {
+    const query = req.query.emissao;
+
+    let objeto = {
+      emissao: "",
+    };
+
+    if (query == "true") {
+      objeto.emissao = "Emitida";
+    } else if (query == "false") {
+      objeto.emissao = "Nao Emitida";
+    } else {
+      objeto = {};
+    }
+
     try {
-      const query = req.query.emissao;
-
-      let objeto = {
-        emissao: "",
-      };
-
-      if (query == "true") {
-        objeto.emissao = "Emitida";
-      } else if (query == "false") {
-        objeto.emissao = "Nao Emitida";
-      } else {
-        objeto = null;
-      }
-      const apoliceResultado = await apolices.find(objeto);
-      console.log("apoliceResultado", apoliceResultado);
+      const apoliceResultado = apolices.find(objeto);
+      req.resultado = apoliceResultado;
 
       if (apoliceResultado !== null) {
-        res.status(200).send(apoliceResultado);
+        next();
       } else {
         res.status(200).send([]);
         next(new NaoEncontrado("Nao foram encontradas apolices"));
