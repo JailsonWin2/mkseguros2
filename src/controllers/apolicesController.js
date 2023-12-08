@@ -75,6 +75,24 @@ class ApoliceController {
       next(erro);
     }
   };
+
+  static listarApolicePorEmissao = async (req, res, next) => {
+    try {
+      const filtro = req.params.emissao;
+      console.log("filtro", filtro);
+      const apoliceResultado = await apolices.find({ emissao: filtro });
+      console.log("apoliceResultado", apoliceResultado);
+
+      if (apoliceResultado !== null) {
+        res.status(200).send(apoliceResultado);
+      } else {
+        res.status(200).send([]);
+        next(new NaoEncontrado("Nao foram encontradas apolices"));
+      }
+    } catch (erro) {
+      next(erro);
+    }
+  };
 }
 
 export default ApoliceController;
