@@ -5,9 +5,9 @@ import paginar from "../middlewares/paginar.js";
 const router = express.Router();
 
 router
+  .get("/apolices/emissao", ApoliceController.listarApolicePorEmissao, paginar)
   .get("/apolices", ApoliceController.listarApolices, paginar)
   .get("/apolices/:id", ApoliceController.listarApolicePorId)
-  .get("/apolices/emissao", ApoliceController.listarApolicePorEmissao, paginar)
   .post("/apolices", ApoliceController.cadastrarApolice)
   .put("/apolices/:id", ApoliceController.atualizarApolice)
   .delete("/apolices/:id", ApoliceController.excluirApolice);

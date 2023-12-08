@@ -78,9 +78,20 @@ class ApoliceController {
 
   static listarApolicePorEmissao = async (req, res, next) => {
     try {
-      const filtro = req.params.emissao;
-      console.log("filtro", filtro);
-      const apoliceResultado = await apolices.find({ emissao: filtro });
+      const query = req.query.emissao;
+
+      let objeto = {
+        emissao: "",
+      };
+
+      if (query == "true") {
+        objeto.emissao = "Emitida";
+      } else if (query == "false") {
+        objeto.emissao = "Nao Emitida";
+      } else {
+        objeto = null;
+      }
+      const apoliceResultado = await apolices.find(objeto);
       console.log("apoliceResultado", apoliceResultado);
 
       if (apoliceResultado !== null) {
