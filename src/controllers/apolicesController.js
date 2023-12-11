@@ -80,25 +80,20 @@ class ApoliceController {
     const query = req.query.emissao;
     const cliente = req.query.cliente;
 
-    let objeto = {
-      emissao: "",
-      cliente: "",
-    };
+    let objeto = {};
 
     if (query == "true") {
       objeto.emissao = "Emitida";
     } else if (query == "false") {
       objeto.emissao = "Nao Emitida";
-    } else {
-      objeto = {
-        cliente: "",
-      };
-    }
+    } else {}
 
     if (cliente !== undefined) {
-      (objeto.cliente = new RegExp(cliente, "i")), // 'i' é para tornar a busca case-insensitive
+      if(cliente.length > 0){
+        (objeto.cliente = new RegExp(cliente, "i")), // 'i' é para tornar a busca case-insensitive
         console.log(objeto);
-    }
+      }else{}
+
     try {
       console.log(objeto);
       const apoliceResultado = apolices.find(objeto);
