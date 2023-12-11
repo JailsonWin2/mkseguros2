@@ -75,13 +75,19 @@ class ApoliceController {
       next(erro);
     }
   };
-
+  //A função abaixo, lista as apolices por emissão, e também por cliente, caso o cliente seja informado na query
   static listarApolicePorEmissao = async (req, res, next) => {
     const query = req.query.emissao;
+    const cliente = req.query.cliente;
 
     let objeto = {
       emissao: "",
     };
+
+    if (cliente !== undefined) {
+      objeto.cliente = `%${cliente}%`;
+      console.log(objeto);
+    }
 
     if (query == "true") {
       objeto.emissao = "Emitida";
@@ -92,7 +98,10 @@ class ApoliceController {
     }
 
     try {
-      const apoliceResultado = apolices.find(objeto);
+      console.log(objeto);
+      const apoliceResultado = apolices.find({
+        cliente: new RegExp(cliente, "i"), // 'i' é para tornar a busca case-insensitive
+      });
       req.resultado = apoliceResultado;
 
       if (apoliceResultado !== null) {
