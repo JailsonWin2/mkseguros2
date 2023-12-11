@@ -86,13 +86,18 @@ class ApoliceController {
       objeto.emissao = "Emitida";
     } else if (query == "false") {
       objeto.emissao = "Nao Emitida";
-    } else {}
+    } else {
+      return;
+    }
 
     if (cliente !== undefined) {
-      if(cliente.length > 0){
+      if (cliente.length > 0) {
         (objeto.cliente = new RegExp(cliente, "i")), // 'i' é para tornar a busca case-insensitive
-        console.log(objeto);
-      }else{}
+          console.log(objeto);
+      } else {
+        return;
+      }
+    }
 
     try {
       console.log(objeto);
