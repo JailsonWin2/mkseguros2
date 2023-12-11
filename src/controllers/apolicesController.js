@@ -87,7 +87,6 @@ class ApoliceController {
     } else if (query == "false") {
       objeto.emissao = "Nao Emitida";
     } else {
-      return;
     }
 
     if (cliente !== undefined) {
@@ -95,7 +94,6 @@ class ApoliceController {
         (objeto.cliente = new RegExp(cliente, "i")), // 'i' é para tornar a busca case-insensitive
           console.log(objeto);
       } else {
-        return;
       }
     }
 
