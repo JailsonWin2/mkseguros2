@@ -14,13 +14,9 @@ router.post("/login", async (req, res) => {
   // Se as credenciais estiverem corretas
   if (usuario) {
     // Crie um token JWT
-    const token = jwt.sign(
-      { id: usuario.id },
-      "bV2sW!45Zr$60qP92RbT1fO3&7UjMeQ#GhXcV6Yh*N@JkLzX2345W1aZxsW2E4RvBt6n8mQwErTy",
-      {
-        expiresIn: "1h",
-      }
-    );
+    const token = jwt.sign({ id: usuario.id }, process.env.SECRET_KEY, {
+      expiresIn: "1h",
+    });
 
     // Envie o token como resposta
     res.json({ token });
