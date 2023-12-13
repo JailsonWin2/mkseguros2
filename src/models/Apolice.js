@@ -35,10 +35,6 @@ const apoliceSchema = new mongoose.Schema(
       type: String,
       required: [true, "O campo NÚMERO PROPOSTA é obrigatório!"],
     },
-    premio_bruto: {
-      type: Number,
-      required: [true, "O campo PRÊMIO BRUTO é obrigatório!"],
-    },
     premio_liquido: {
       type: Number,
       required: [true, "O campo PRÊMIO LÍQUIDO é obrigatório!"],
