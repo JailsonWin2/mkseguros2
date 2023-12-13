@@ -13,9 +13,9 @@ router
     ApoliceController.listarApolicePorEmissao,
     paginar
   )
-  .get("/apolices/:id", ApoliceController.listarApolicePorId)
-  .post("/apolices", ApoliceController.cadastrarApolice)
-  .put("/apolices/:id", ApoliceController.atualizarApolice)
-  .delete("/apolices/:id", ApoliceController.excluirApolice);
+  .get("/apolices/:id", checkToken, ApoliceController.listarApolicePorId)
+  .post("/apolices", checkToken, ApoliceController.cadastrarApolice)
+  .put("/apolices/:id", checkToken, ApoliceController.atualizarApolice)
+  .delete("/apolices/:id", checkToken, ApoliceController.excluirApolice);
 
 export default router;
