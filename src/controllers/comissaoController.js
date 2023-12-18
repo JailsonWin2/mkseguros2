@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import NaoEncontrado from "../erros/NaoEncontrado.js";
 import { apolices, comissoes } from "../models/index.js";
 
@@ -19,8 +20,6 @@ class ComissaoController {
       const id = req.params.id;
 
       const comissaoResultado = await comissoes.findById(id);
-      //.populate("autor", "nome")
-      //.exec();
 
       if (comissaoResultado !== null) {
         res.status(200).send(comissaoResultado);
@@ -37,9 +36,8 @@ class ComissaoController {
       const apoliceResultado = await apolices.findById(req.body.apolice);
       console.log("ApoliceResultado", apoliceResultado);
       let comissao = new comissoes(req.body);
-      console.log("Comissao", comissao);
+
       comissao.apolice = apoliceResultado;
-      console.log("Comissao2", comissao);
 
       const comissaoResultado = await comissao.save();
 
@@ -85,13 +83,18 @@ class ComissaoController {
 
   static listarComissaoPorApolice = async (req, res, next) => {
     try {
-      const apoliceId = req.query.apolice;
-      const apoliceEncontrada = await apolices.findById(apoliceId);
+      let apoliceId = req.query.apolice;
+      apoliceId = apoliceId.trim(); // Remover espaços em branco, incluindo quebras de linha
+
+      const apoliceEncontrada = await apolices.findOne({
+        _id: apoliceId,
+      });
 
       if (apoliceEncontrada !== null) {
         const comissoesPorApolice = await comissoes.find({
-          apolice: apoliceEncontrada,
+          "apolice._id": apoliceId,
         });
+
         res.status(200).json(comissoesPorApolice);
       } else {
         next(new NaoEncontrado("Id da apolice não localizado."));
@@ -109,7 +112,7 @@ class ComissaoController {
       if (busca !== null) {
         const comissoesResultado = apolices.find(busca.apolice);
 
-        req.resultado = comissoesResultado;
+        req.resultado = comissoesResultado._id;
 
         next();
       } else {
